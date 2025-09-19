@@ -1,0 +1,13 @@
+{
+  "notificationId": "sms-001",
+  "messageType": "notification",
+  "to": "+1234567890",
+  "templateBody": "Hi {name}! Your verification code is {code}. Valid for {expiry} minutes.",
+  "params": {
+    "name": "John",
+    "code": "123456",
+    "expiry": "10"
+  },
+  "priority": "high",
+  "locale": "en_US"
+}
