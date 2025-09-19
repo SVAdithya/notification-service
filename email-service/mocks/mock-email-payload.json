@@ -1,0 +1,18 @@
+{
+  "notificationId": "notification-email-001",
+  "messageType": "notification",
+  "to": "recipient@example.com",
+  "templateBody": "Dear {name},\n\nYour order #{orderNumber} has been {status}.\n\nOrder Details:\n- Product: {product}\n- Amount: {amount}\n- Status: {status}\n\nThank you for your business!\n\nBest regards,\nThe Team",
+  "params": {
+    "name": "John Doe",
+    "orderNumber": "12345",
+    "product": "Premium Widget",
+    "amount": "$49.99",
+    "status": "confirmed"
+  },
+  "channelConfig": {
+    "subject": "Order Confirmation - #{orderNumber}"
+  },
+  "priority": "medium",
+  "locale": "en_US"
+}

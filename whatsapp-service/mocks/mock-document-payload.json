@@ -1,0 +1,14 @@
+{
+  "notificationId": "whatsapp-004",
+  "messageType": "notification",
+  "to": "+1234567890",
+  "templateBody": "Your invoice #{invoiceNumber} is ready for download.",
+  "params": {
+    "invoiceNumber": "INV-12345",
+    "filename": "invoice_12345.pdf"
+  },
+  "mediaUrl": "https://example.com/invoices/invoice_12345.pdf",
+  "mediaType": "document",
+  "priority": "medium",
+  "locale": "en_US"
+}

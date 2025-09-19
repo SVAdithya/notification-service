@@ -1,0 +1,13 @@
+{
+  "notificationId": "sms-alert-001",
+  "messageType": "notification",
+  "to": "+1234567890",
+  "templateBody": "ALERT: {alertType} detected in {location}. Status: {status}. Contact support immediately.",
+  "params": {
+    "alertType": "Security breach",
+    "location": "Server Room A",
+    "status": "CRITICAL"
+  },
+  "priority": "urgent",
+  "locale": "en_US"
+}

@@ -1,0 +1,13 @@
+{
+  "notificationId": "whatsapp-003",
+  "messageType": "notification",
+  "to": "+1234567890",
+  "templateName": "order_confirmation",
+  "params": {
+    "customer_name": "John Doe",
+    "order_number": "12345",
+    "total_amount": "$49.99"
+  },
+  "priority": "high",
+  "locale": "en_US"
+}
