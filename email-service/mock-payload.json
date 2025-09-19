@@ -1,0 +1,23 @@
+{
+  "notificationId": "id-12345",
+  "messageType": "Test EMAIL",
+  "to": "svadithya93@gmail.com",
+  "templateBody": "Hello {name}, your code is {code}.",
+  "params": {
+    "name": "Adithya Sv",
+    "code": "999999"
+  },
+  "priority": "HIGH",
+  "channelConfig": {
+    "senderId": "my-app",
+    "subject": "Your Code",
+    "replyTo": "support@example.com"
+  },
+  "scheduledTime": "2025-09-08T10:00:00Z",
+  "expiresAt": "2025-09-18T10:30:00Z",
+  "retryConfig": {
+    "maxAttempts": 3,
+    "backoffIntervalSeconds": 60
+  },
+  "locale": "en-US"
+}
