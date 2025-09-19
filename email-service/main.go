@@ -5,26 +5,29 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/smtp"
 	"os"
 	"strings"
 	"time"
 
+	"github.com/joho/godotenv"
 	"github.com/segmentio/kafka-go"
 )
 
 // Configurable via env or flags
 type AppConfig struct {
-	KafkaBroker      string
-	EmailTopic       string
-	AckTopic         string
-	GroupID          string
-	EmailSender      string
-	EmailSMTPHost    string
-	EmailSMTPPort    string
-	EmailSMTPUser    string
+	KafkaBroker       string
+	EmailTopic        string
+	AckTopic          string
+	GroupID           string
+	EmailSender       string
+	EmailSMTPHost     string
+	EmailSMTPPort     string
+	EmailSMTPUser     string
 	EmailSMTPPassword string
+	ServicePort       string
 }
 
 func getenv(key, def string) string {
@@ -37,15 +40,16 @@ func getenv(key, def string) string {
 
 func getConfigFromEnv() AppConfig {
 	return AppConfig{
-		KafkaBroker:      "localhost:9092",
-		EmailTopic:       "notification_email_topic",
-		AckTopic:         "notification_email_ack_topic",
-		GroupID:          getenv("EMAIL_CONSUMER_GROUP", "email-service-group"),
-		EmailSender:      getenv("EMAIL_SENDER", ""),
-		EmailSMTPHost:    getenv("EMAIL_SMTP_HOST", "smtp.gmail.com"),
-		EmailSMTPPort:    getenv("EMAIL_SMTP_PORT", "587"),
-		EmailSMTPUser:    getenv("EMAIL_SMTP_USER", ""),         // Your email ID/login
-		EmailSMTPPassword:getenv("EMAIL_SMTP_PASSWORD", ""),     // Your password/app password
+		KafkaBroker:       getenv("KAFKA_BROKER", "localhost:9092"),
+		EmailTopic:        getenv("EMAIL_TOPIC", "notification_email_topic"),
+		AckTopic:          getenv("ACK_TOPIC", "notification_email_ack_topic"),
+		GroupID:           getenv("GROUP_ID", "email-service-group"),
+		EmailSender:       getenv("EMAIL_SENDER", ""),
+		EmailSMTPHost:     getenv("EMAIL_SMTP_HOST", "smtp.gmail.com"),
+		EmailSMTPPort:     getenv("EMAIL_SMTP_PORT", "587"),
+		EmailSMTPUser:     getenv("EMAIL_SMTP_USER", ""),         // Your email ID/login
+		EmailSMTPPassword: getenv("EMAIL_SMTP_PASSWORD", ""),     // Your password/app password
+		ServicePort:       getenv("SERVICE_PORT", "8084"),
 	}
 }
 
@@ -70,6 +74,10 @@ type AckPayload struct {
 }
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 	config := getConfigFromEnv()
 	fmt.Println("BROKER ADDRESS IN USE:", config.KafkaBroker)
 
@@ -88,8 +96,8 @@ func main() {
 		w.Write([]byte(`{"status":"UP"}`))
 	})
 
-	fmt.Println("Service running. Health endpoint on :8084/actuator/health")
-	if err := http.ListenAndServe(":8084", nil); err != nil {
+	fmt.Println("Service running. Health endpoint on :"+config.ServicePort+"/actuator/health")
+	if err := http.ListenAndServe(":"+config.ServicePort, nil); err != nil {
 		panic(err)
 	}
 }
