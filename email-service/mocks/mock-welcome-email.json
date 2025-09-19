@@ -1,0 +1,18 @@
+{
+  "notificationId": "welcome-email-001",
+  "messageType": "notification",
+  "to": "newuser@example.com",
+  "templateBody": "Welcome to our platform, {name}!\n\nThank you for signing up. Your account has been created successfully.\n\nAccount Details:\n- Email: {email}\n- Account Type: {accountType}\n- Registration Date: {registrationDate}\n\nTo get started, please verify your email address by clicking the link below:\n{verificationLink}\n\nIf you have any questions, please don't hesitate to contact our support team.\n\nBest regards,\nThe Support Team",
+  "params": {
+    "name": "Jane Smith",
+    "email": "newuser@example.com",
+    "accountType": "Premium",
+    "registrationDate": "2023-12-01",
+    "verificationLink": "https://example.com/verify?token=abc123"
+  },
+  "channelConfig": {
+    "subject": "Welcome to Our Platform - Please Verify Your Email"
+  },
+  "priority": "high",
+  "locale": "en_US"
+}
