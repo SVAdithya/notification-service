@@ -19,15 +19,15 @@ jobs:
           go-version: '1.22'
 
       - name: Tidy dependencies (email-service)
-        working-directory: notification-service/email-service
+        working-directory: email-service
         run: go mod tidy
 
       - name: Build email-service
-        working-directory: notification-service/email-service
+        working-directory: email-service
         run: go build ./...
 
       - name: Tidy dependencies (sms-service)
-        working-directory: notification-service/sms-service
+        working-directory: sms-service
         run: go mod tidy
 
       - name: Build sms-service
