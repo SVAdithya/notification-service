@@ -1,0 +1,43 @@
+name: Go Build Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Tidy dependencies (email-service)
+        working-directory: notification-service/email-service
+        run: go mod tidy
+
+      - name: Build email-service
+        working-directory: notification-service/email-service
+        run: go build ./...
+
+      - name: Tidy dependencies (sms-service)
+        working-directory: notification-service/sms-service
+        run: go mod tidy
+
+      - name: Build sms-service
+        working-directory: notification-service/sms-service
+        run: go build ./...
+
+      - name: Tidy dependencies (whatsapp-service)
+        working-directory: notification-service/whatsapp-service
+        run: go mod tidy
+
+      - name: Build whatsapp-service
+        working-directory: notification-service/whatsapp-service
+        run: go build ./...
