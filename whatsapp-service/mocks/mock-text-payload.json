@@ -1,0 +1,13 @@
+{
+  "notificationId": "whatsapp-001",
+  "messageType": "notification",
+  "to": "+1234567890",
+  "templateBody": "Hello {name}, your order #{orderNumber} has been {status}. Thank you for choosing us!",
+  "params": {
+    "name": "John Doe",
+    "orderNumber": "12345",
+    "status": "confirmed"
+  },
+  "priority": "high",
+  "locale": "en_US"
+}

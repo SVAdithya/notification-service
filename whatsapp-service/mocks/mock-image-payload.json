@@ -1,0 +1,14 @@
+{
+  "notificationId": "whatsapp-002",
+  "messageType": "notification",
+  "to": "+1234567890",
+  "templateBody": "Here's your receipt for order #{orderNumber}. Thank you {name}!",
+  "params": {
+    "name": "John Doe",
+    "orderNumber": "12345"
+  },
+  "mediaUrl": "https://example.com/receipt.jpg",
+  "mediaType": "image",
+  "priority": "medium",
+  "locale": "en_US"
+}
