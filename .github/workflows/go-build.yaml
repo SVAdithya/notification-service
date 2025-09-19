@@ -31,13 +31,13 @@ jobs:
         run: go mod tidy
 
       - name: Build sms-service
-        working-directory: notification-service/sms-service
+        working-directory: sms-service
         run: go build ./...
 
       - name: Tidy dependencies (whatsapp-service)
-        working-directory: notification-service/whatsapp-service
+        working-directory: whatsapp-service
         run: go mod tidy
 
       - name: Build whatsapp-service
-        working-directory: notification-service/whatsapp-service
+        working-directory: whatsapp-service
         run: go build ./...
